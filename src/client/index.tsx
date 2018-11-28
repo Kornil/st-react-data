@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
 import { AppContainer } from "react-hot-loader";
@@ -10,8 +10,9 @@ import "./style.scss";
 
 const root = document.getElementById("root") as HTMLElement;
 
-const render = (Component: React.SFC) => {
-  ReactDOM.render(
+const render = (Component: React.SFC | typeof React.Component) => {
+  const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
+  renderMethod(
     <BrowserRouter>
       <AppContainer>
         <Component />
