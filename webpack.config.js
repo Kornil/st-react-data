@@ -1,51 +1,52 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 
-const dev = process.env.NODE_ENV !== 'production';
-
-const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
-  template: 'index.html',
-  filename: 'index.html',
-  inject: true,
-});
+const dev = process.env.NODE_ENV !== "production";
 
 const DefinePluginConfig = new webpack.DefinePlugin({
-  'process.env.NODE_ENV': JSON.stringify('production'),
+  "process.env.NODE_ENV": JSON.stringify("production")
 });
 
+const hotReloadMiddlewares = [
+  "react-hot-loader/patch",
+  "webpack-hot-middleware/client"
+];
+
 const clientConfig = {
-  entry: ['react-hot-loader/patch', path.join(__dirname, '/src/client/index.tsx')],
+  entry: dev
+    ? [...hotReloadMiddlewares, "./src/client/index.tsx"]
+    : ["./src/client/index.tsx"],
   stats: dev ? "normal" : "errors-only",
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'babel-loader',
+        loader: "babel-loader"
       },
       {
-        enforce: 'pre',
+        enforce: "pre",
         test: /\.js$/,
-        loader: 'source-map-loader',
+        loader: "source-map-loader"
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass-loader',
-      },
-    ],
+        loader: "style-loader!css-loader!sass-loader"
+      }
+    ]
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: [".js", ".ts", ".tsx"],
   },
   output: {
-    filename: 'index.js',
-    path: path.join(__dirname, '/build'),
+    filename: "bundle.js",
+    path: path.join(__dirname, "/build"),
+    publicPath: dev ? "http://localhost:3000/build/" : "/"
   },
-  mode: dev ? 'development' : 'production',
+  mode: dev ? "development" : "production",
   plugins: dev
     ? [new webpack.HotModuleReplacementPlugin()]
-    : [DefinePluginConfig],
+    : [DefinePluginConfig]
 };
 
 const serverConfig = {
@@ -71,7 +72,7 @@ const serverConfig = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         loader: "babel-loader"
-      },
+      }
     ]
   }
 };
