@@ -14,17 +14,9 @@ const DefinePluginConfig = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify('production'),
 });
 
-module.exports = {
-  devServer: {
-    host: 'localhost',
-    port: '3000',
-    hot: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    historyApiFallback: true,
-  },
-  entry: ['react-hot-loader/patch', path.join(__dirname, '/src/index.tsx')],
+const clientConfig = {
+  entry: ['react-hot-loader/patch', path.join(__dirname, '/src/client/index.tsx')],
+  stats: dev ? "normal" : "errors-only",
   module: {
     rules: [
       {
@@ -51,6 +43,36 @@ module.exports = {
   },
   mode: dev ? 'development' : 'production',
   plugins: dev
-    ? [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()]
-    : [HTMLWebpackPluginConfig, DefinePluginConfig],
+    ? [new webpack.HotModuleReplacementPlugin()]
+    : [DefinePluginConfig],
 };
+
+const serverConfig = {
+  entry: path.join(__dirname, "src/server/index.ts"),
+  target: "node",
+  externals: [nodeExternals()],
+  resolve: {
+    extensions: [".js", ".ts", ".tsx"],
+    alias: {
+      app: path.resolve(__dirname, "src/client/")
+    }
+  },
+  stats: dev ? "normal" : "errors-only",
+  output: {
+    path: __dirname,
+    filename: "server.js",
+    publicPath: "/"
+  },
+  mode: dev ? "development" : "production",
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
+    ]
+  }
+};
+
+module.exports = [clientConfig, serverConfig];
