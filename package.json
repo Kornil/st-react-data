@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server -d",
+    "start": "node server.js",
+    "start--dev": "cross-env NODE_ENV=development webpack -w & node server.js",
     "build": "cross-env NODE_ENV=production webpack -p",
-    "test": "jest"
+    "type-check": "tsc --noEmit",
+    "tslint": "tslint --fix --project ./",
+    "test": "jest --coverage"
   },
   "keywords": [],
   "author": "",
