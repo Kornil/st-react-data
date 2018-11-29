@@ -4,6 +4,6 @@ import Home from "./";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  render(<Home user="Default User" />, div);
+  render(<Home />, div);
   unmountComponentAtNode(div);
 });
