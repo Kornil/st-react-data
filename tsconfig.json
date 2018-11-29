@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
-    "outDir": "./build/",
+    "outDir": "build",
+    "rootDir": "src",
     "sourceMap": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "jsx": "react",
-    "typeRoots": ["node_modules/@types", "src/custom-types"]
+    "strict": true,
+    "typeRoots": ["node_modules/@types", "src/custom-types"],
+    "baseUrl": ".",
+    "paths": {
+      "app/*": ["src/client/*"]
+    },
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]
