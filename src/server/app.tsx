@@ -15,6 +15,9 @@ import webpackHotMiddleware from "webpack-hot-middleware";
 // @ts-ignore
 import webpackConfig from "../../webpack.config";
 
+import audience from "./data/audience1.json";
+import bandwidth from "./data/bandwidth1.json";
+
 const app = express();
 
 /* istanbul ignore next */
@@ -35,6 +38,14 @@ interface ContextInterface {
   url?: string;
   statusCode?: number;
 }
+
+app.get("/bandwidth", ({}, res) => {
+  res.json(bandwidth);
+});
+
+app.get("/audience", ({}, res) => {
+  res.json(audience);
+});
 
 app.get("*", (req, res) => {
   const context: ContextInterface = {};
