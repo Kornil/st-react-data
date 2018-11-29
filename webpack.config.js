@@ -15,8 +15,8 @@ const hotReloadMiddlewares = [
 
 const clientConfig = {
   entry: dev
-    ? [...hotReloadMiddlewares, "./src/client/index.tsx"]
-    : ["./src/client/index.tsx"],
+    ? ["isomorphic-fetch", ...hotReloadMiddlewares, "./src/client/index.tsx"]
+    : ["isomorphic-fetch", "./src/client/index.tsx"],
   stats: dev ? "normal" : "errors-only",
   module: {
     rules: [
@@ -36,7 +36,7 @@ const clientConfig = {
     ]
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx"],
+    extensions: [".js", ".ts", ".tsx"]
   },
   output: {
     filename: "bundle.js",

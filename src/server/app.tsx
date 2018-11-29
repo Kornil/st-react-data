@@ -2,6 +2,9 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 
+import "es6-promise/auto";
+import "isomorphic-fetch";
+
 import express from "express";
 
 import App from "app/App";
