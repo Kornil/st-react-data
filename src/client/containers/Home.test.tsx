@@ -1,16 +1,9 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-
-import App from "./../../App";
+import { Home } from "./";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-    div
-  );
+  render(<Home user="Default User" />, div);
   unmountComponentAtNode(div);
 });
