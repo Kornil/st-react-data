@@ -34,6 +34,17 @@
     "moduleNameMapper": {
       "\\.(css|styl|less|sass|scss)$": "identity-obj-proxy"
     },
+    "coverageDirectory": "./coverage/",
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/custom-types/",
+      "/tests/",
+      "/src/client/index.tsx",
+      "/src/server/index.ts"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
     "transform": {
       "^.+\\.tsx?$": "ts-jest",
