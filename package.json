@@ -32,7 +32,8 @@
       "<rootDir>/src/client/tests/setup.ts"
     ],
     "moduleNameMapper": {
-      "\\.(css|styl|less|sass|scss)$": "identity-obj-proxy"
+      "\\.(css|styl|less|sass|scss)$": "identity-obj-proxy",
+      "^app/(.*)$": "<rootDir>/src/client/$1"
     },
     "coverageDirectory": "./coverage/",
     "collectCoverageFrom": [
