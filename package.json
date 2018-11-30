@@ -71,6 +71,7 @@
     "@types/react-dom": "^16.0.10",
     "@types/react-router-dom": "^4.3.1",
     "@types/supertest": "^2.0.6",
+    "@types/victory": "^0.9.21",
     "@types/webpack": "^4.4.19",
     "@types/webpack-dev-middleware": "^2.0.2",
     "@types/webpack-env": "^1.13.6",
@@ -112,6 +113,7 @@
     "isomorphic-fetch": "^2.2.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "victory": "^31.0.1"
   }
 }
