@@ -1,6 +1,7 @@
 import React from "react";
 import {
   DomainPropType,
+  VictoryArea,
   VictoryAxis,
   VictoryBrushContainer,
   VictoryChart,
@@ -45,8 +46,30 @@ const CapacityZoomChart = ({
     }
   >
     <VictoryAxis tickFormat={tickFormat} />
-    <VictoryLine data={cdnData} x={x} y={y} />
-    <VictoryLine data={p2pData} x={x} y={y} />
+    <VictoryArea
+      data={p2pData}
+      x={x}
+      y={y}
+      style={{ data: { fill: "#4FBCF2" } }}
+    />
+    <VictoryLine
+      data={p2pData}
+      x={x}
+      y={y}
+      style={{ data: { stroke: "#3AA0D3" } }}
+    />
+    <VictoryArea
+      data={cdnData}
+      x={x}
+      y={y}
+      style={{ data: { fill: "#B2125C" } }}
+    />
+    <VictoryLine
+      data={cdnData}
+      x={x}
+      y={y}
+      style={{ data: { stroke: "#511883" } }}
+    />
   </VictoryChart>
 );
 

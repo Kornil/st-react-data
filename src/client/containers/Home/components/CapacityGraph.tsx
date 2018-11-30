@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   DomainPropType,
+  VictoryArea,
   VictoryAxis,
   VictoryChart,
   VictoryLine,
@@ -68,8 +69,30 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
             // tslint:disable-next-line
             tickFormat={formatBytes}
           />
-          <VictoryLine data={cdnData} x={AXIS.x} y={AXIS.y} />
-          <VictoryLine data={p2pData} x={AXIS.x} y={AXIS.y} />
+          <VictoryArea
+            data={p2pData}
+            x={AXIS.x}
+            y={AXIS.y}
+            style={{ data: { fill: "#4FBCF2" } }}
+          />
+          <VictoryLine
+            data={p2pData}
+            x={AXIS.x}
+            y={AXIS.y}
+            style={{ data: { stroke: "#3AA0D3", strokeWidth: 3 } }}
+          />
+          <VictoryArea
+            data={cdnData}
+            x={AXIS.x}
+            y={AXIS.y}
+            style={{ data: { fill: "#B2125C" } }}
+          />
+          <VictoryLine
+            data={cdnData}
+            x={AXIS.x}
+            y={AXIS.y}
+            style={{ data: { stroke: "#511883", strokeWidth: 3 } }}
+          />
         </VictoryChart>
         <CapacityZoomChart
           cdnData={cdnData}
