@@ -7,11 +7,14 @@ import {
   VictoryLine
 } from "victory";
 
+type DataType = Array<{
+  date: Date;
+  gbps: number;
+}>;
+
 interface CapacityZoomChartProps {
-  data: Array<{
-    date: Date;
-    gbps: number;
-  }>;
+  cdnData: DataType;
+  p2pData: DataType;
   x: string;
   y: string;
   selectedDomain: DomainPropType | undefined;
@@ -20,7 +23,8 @@ interface CapacityZoomChartProps {
 }
 
 const CapacityZoomChart = ({
-  data,
+  cdnData,
+  p2pData,
   x,
   y,
   selectedDomain,
@@ -41,7 +45,8 @@ const CapacityZoomChart = ({
     }
   >
     <VictoryAxis tickFormat={tickFormat} />
-    <VictoryLine data={data} x={x} y={y} />
+    <VictoryLine data={cdnData} x={x} y={y} />
+    <VictoryLine data={p2pData} x={x} y={y} />
   </VictoryChart>
 );
 

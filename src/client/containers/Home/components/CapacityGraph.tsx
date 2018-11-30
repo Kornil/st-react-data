@@ -40,10 +40,11 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
   };
 
   render() {
-    const { cdn } = this.props.bandwidthData;
+    const { cdn, p2p } = this.props.bandwidthData;
     const { selectedDomain } = this.state;
 
-    const data = formatData(cdn);
+    const cdnData = formatData(cdn);
+    const p2pData = formatData(p2p);
     return (
       <>
         <VictoryChart
@@ -67,10 +68,12 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
             // tslint:disable-next-line
             tickFormat={formatBytes}
           />
-          <VictoryLine data={data} x={AXIS.x} y={AXIS.y} />
+          <VictoryLine data={cdnData} x={AXIS.x} y={AXIS.y} />
+          <VictoryLine data={p2pData} x={AXIS.x} y={AXIS.y} />
         </VictoryChart>
         <CapacityZoomChart
-          data={data}
+          cdnData={cdnData}
+          p2pData={p2pData}
           x={AXIS.x}
           y={AXIS.y}
           selectedDomain={selectedDomain}
