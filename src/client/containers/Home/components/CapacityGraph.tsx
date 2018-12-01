@@ -50,6 +50,7 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
 
     return (
       <>
+        <h4>Capacity Offload</h4>
         <VictoryChart
           width={800}
           height={600}
