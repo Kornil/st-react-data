@@ -6,6 +6,7 @@ import { formatData } from "./utils";
 
 interface HomeState {
   status: "loading" | "error" | "success";
+  audienceData: number[][] | null;
   bandwidthData: {
     cdn: number[][];
     p2p: number[][];
@@ -14,6 +15,7 @@ interface HomeState {
 
 class Home extends Component<{}, HomeState> {
   state: HomeState = {
+    audienceData: null,
     bandwidthData: null,
     status: "loading"
   };
@@ -29,10 +31,14 @@ class Home extends Component<{}, HomeState> {
 
   fetchBandwidthData = async () => {
     try {
-      const response: Response = await fetch("/bandwidth");
-      const bandwidthData = await response.json();
+      const bandwidthResponse: Response = await fetch("/bandwidth");
+      const bandwidthData = await bandwidthResponse.json();
+
+      const audienceResponse: Response = await fetch("/audience");
+      const audienceData = await audienceResponse.json();
 
       this.setState({
+        audienceData,
         bandwidthData,
         status: "success"
       });
@@ -52,12 +58,14 @@ class Home extends Component<{}, HomeState> {
         return <ErrorPage />;
       case "success":
         return (
-          bandwidthData && (
-            <CapacityGraph
-              cdn={formatData(bandwidthData.cdn)}
-              p2p={formatData(bandwidthData.p2p)}
-            />
-          )
+          <>
+            {bandwidthData && (
+              <CapacityGraph
+                cdn={formatData(bandwidthData.cdn)}
+                p2p={formatData(bandwidthData.p2p)}
+              />
+            )}
+          </>
         );
     }
   }

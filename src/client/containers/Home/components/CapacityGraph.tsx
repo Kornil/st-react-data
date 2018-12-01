@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  // TODO send PR to @types/victory to add VictoryVoronoiContainer
+  // TODO send PR to @types/victory to add createContainer
   // @ts-ignore
   createContainer,
   DomainPropType,
