@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 
 import { ErrorPage, LoadingPage } from "../";
-import { CapacityGraph } from "./components";
-import { formatData } from "./utils";
+import { AudienceGraph, CapacityGraph } from "./components";
+import { formatAudienceData, formatBandwidthData } from "./utils";
 
 interface HomeState {
   status: "loading" | "error" | "success";
-  audienceData: number[][] | null;
+  audienceData: {
+    audience: number[][];
+  } | null;
   bandwidthData: {
     cdn: number[][];
     p2p: number[][];
@@ -50,7 +52,7 @@ class Home extends Component<{}, HomeState> {
   };
 
   render() {
-    const { bandwidthData, status } = this.state;
+    const { audienceData, bandwidthData, status } = this.state;
     switch (status) {
       case "loading":
         return <LoadingPage />;
@@ -61,9 +63,12 @@ class Home extends Component<{}, HomeState> {
           <>
             {bandwidthData && (
               <CapacityGraph
-                cdn={formatData(bandwidthData.cdn)}
-                p2p={formatData(bandwidthData.p2p)}
+                cdn={formatBandwidthData(bandwidthData.cdn)}
+                p2p={formatBandwidthData(bandwidthData.p2p)}
               />
+            )}
+            {audienceData && (
+              <AudienceGraph data={formatAudienceData(audienceData.audience)} />
             )}
           </>
         );
