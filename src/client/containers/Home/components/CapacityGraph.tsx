@@ -60,6 +60,7 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
               onZoomDomainChange={this.handleZoom}
               labels={d =>  d.gbps}
               labelComponent={<VictoryTooltip />}
+              voronoiDimension="x"
             />
           }
         >
