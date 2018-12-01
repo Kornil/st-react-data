@@ -52,7 +52,7 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
       <>
         <h4>Capacity Offload</h4>
         <VictoryChart
-          width={800}
+          width={1200}
           height={600}
           scale={{ x: "time" }}
           containerComponent={
@@ -96,7 +96,6 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
           y={AXIS.y}
           selectedDomain={selectedDomain}
           onBrush={this.handleBrush}
-          tickFormat={formatTime}
         />
       </>
     );

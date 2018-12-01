@@ -2,9 +2,8 @@ import React from "react";
 import {
   DomainPropType,
   VictoryArea,
-  VictoryAxis,
   VictoryBrushContainer,
-  VictoryChart
+  VictoryGroup
 } from "victory";
 
 type DataType = Array<{
@@ -19,7 +18,6 @@ interface CapacityZoomChartProps {
   y: string;
   selectedDomain: DomainPropType | undefined;
   onBrush: (domain: DomainPropType) => void;
-  tickFormat: (date: number) => string;
 }
 
 const CapacityZoomChart = ({
@@ -28,12 +26,11 @@ const CapacityZoomChart = ({
   x,
   y,
   selectedDomain,
-  onBrush,
-  tickFormat
+  onBrush
 }: CapacityZoomChartProps) => (
-  <VictoryChart
+  <VictoryGroup
     padding={{ top: 0, left: 50, right: 50, bottom: 30 }}
-    width={800}
+    width={1200}
     height={100}
     scale={{ x: "time" }}
     containerComponent={
@@ -44,7 +41,6 @@ const CapacityZoomChart = ({
       />
     }
   >
-    <VictoryAxis tickFormat={tickFormat} />
     <VictoryArea
       data={p2p}
       x={x}
@@ -57,7 +53,7 @@ const CapacityZoomChart = ({
       y={y}
       style={{ data: { fill: "#B2125C" } }}
     />
-  </VictoryChart>
+  </VictoryGroup>
 );
 
 export default CapacityZoomChart;

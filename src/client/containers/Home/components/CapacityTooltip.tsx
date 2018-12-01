@@ -16,7 +16,7 @@ const CapacityTooltip = ({ datum, cdn, p2p }: CapacityTooltipProps) => {
     data.cdn &&
     data.p2p && (
       <g style={{ pointerEvents: "none" }}>
-        <foreignObject x={600} y={0} width="198" height="100">
+        <foreignObject x={1000} y={0} width="198" height="100">
           <div className="graph-tooltip">
             <p>
               <strong>
