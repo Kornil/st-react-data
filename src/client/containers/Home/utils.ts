@@ -23,11 +23,18 @@ interface AudienceDataInterface {
   audience: number;
 }
 
+/**
+ * Takes a UNIX timestamp and formats it as *Day*.*shortMonth*
+ * es "1. Nov"
+ */
 type formatTimeType = (date: number) => string;
 
 export const formatTime: formatTimeType = date =>
   `${new Date(date).getDate()}. ${Months[new Date(date).getMonth()]}`;
 
+/**
+ * Bandwidth data from array of arrays to array of objects for graph requirements
+ */
 type formatBandwidthDataType = (data: number[][]) => BandwidthDataInterface[];
 
 export const formatBandwidthData: formatBandwidthDataType = data => {
@@ -42,6 +49,9 @@ export const formatBandwidthData: formatBandwidthDataType = data => {
   return result;
 };
 
+/**
+ * Audience data from array of arrays to array of objects for graph requirements
+ */
 type formatAudienceDataType = (data: number[][]) => AudienceDataInterface[];
 
 export const formatAudienceData: formatAudienceDataType = data => {
@@ -56,11 +66,18 @@ export const formatAudienceData: formatAudienceDataType = data => {
   return result;
 };
 
+/**
+ * Turns bytes into GBs
+ */
 type formatBytesType = (bytes: number) => string;
 
 export const formatBytes: formatBytesType = bytes =>
   `${(bytes / 1073741824).toFixed(1)}\nGbps`;
 
+/**
+ * Given a Date Object, finds the p2p and cdn gbps values
+ * (should always be specular)
+ */
 type findRightDataType = (
   date: Date,
   cdn: BandwidthDataInterface[],
@@ -83,6 +100,10 @@ export const findRightData: findRightDataType = (date, cdn, p2p) => {
   };
 };
 
+/**
+ * Calculates percentages, assumes first value is always bigger
+ * Otherwise results will be a negative number
+ */
 type getPercentageType = (value1: number, value2: number) => string;
 
 export const getPercentage: getPercentageType = (value1, value2) => {
