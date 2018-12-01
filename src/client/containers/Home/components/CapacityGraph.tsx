@@ -41,6 +41,10 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
     this.setState({ selectedDomain: domain });
   };
 
+  handleLabelToolTipText = (data: any) => {
+    return data.gbps;
+  }
+
   render() {
     const { cdn, p2p } = this.props;
     const { selectedDomain } = this.state;
@@ -58,7 +62,7 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
               zoomDimension="x"
               zoomDomain={selectedDomain}
               onZoomDomainChange={this.handleZoom}
-              labels={d =>  d.gbps}
+              labels={this.handleLabelToolTipText}
               labelComponent={<VictoryTooltip />}
               voronoiDimension="x"
             />
