@@ -64,12 +64,10 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
           }
         >
           <VictoryAxis
-            // tslint:disable-next-line
             tickFormat={formatTime}
           />
           <VictoryAxis
             dependentAxis
-            // tslint:disable-next-line
             tickFormat={formatBytes}
           />
           <VictoryArea
