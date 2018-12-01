@@ -96,6 +96,7 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
           y={AXIS.y}
           selectedDomain={selectedDomain}
           onBrush={this.handleBrush}
+          tickFormat={formatTime}
         />
       </>
     );
