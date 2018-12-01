@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import {
+  // TODO send PR to @types/victory to add VictoryVoronoiContainer
+  // @ts-ignore
+  createContainer,
   DomainPropType,
   VictoryArea,
   VictoryAxis,
   VictoryChart,
   VictoryLine,
-  VictoryZoomContainer
+  VictoryTooltip,
 } from "victory";
 
 import { CapacityZoomChart } from "./";
@@ -44,6 +47,8 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
     const { cdn, p2p } = this.props.bandwidthData;
     const { selectedDomain } = this.state;
 
+    const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
+
     const cdnData = formatData(cdn);
     const p2pData = formatData(p2p);
     return (
@@ -53,10 +58,12 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
           height={600}
           scale={{ x: "time" }}
           containerComponent={
-            <VictoryZoomContainer
+            <VictoryZoomVoronoiContainer
               zoomDimension="x"
               zoomDomain={selectedDomain}
               onZoomDomainChange={this.handleZoom}
+              labels={d =>  d.gbps}
+              labelComponent={<VictoryTooltip />}
             />
           }
         >
