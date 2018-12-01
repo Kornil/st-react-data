@@ -11,8 +11,8 @@ import {
   VictoryTooltip,
 } from "victory";
 
+import { formatBytes, formatData, formatTime } from "../utils";
 import { CapacityZoomChart } from "./";
-import { formatBytes, formatData, formatTime } from "./utils";
 
 const AXIS: { x: string; y: string } = {
   x: "date",
