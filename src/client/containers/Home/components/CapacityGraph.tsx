@@ -8,10 +8,10 @@ import {
   VictoryAxis,
   VictoryChart,
   VictoryLine,
-  VictoryTooltip,
+  VictoryTooltip
 } from "victory";
 
-import { formatBytes, formatData, formatTime } from "../utils";
+import { formatBytes, formatTime } from "../utils";
 import { CapacityZoomChart } from "./";
 
 const AXIS: { x: string; y: string } = {
@@ -20,10 +20,8 @@ const AXIS: { x: string; y: string } = {
 };
 
 interface CapacityGraphProps {
-  bandwidthData: {
-    cdn: number[][];
-    p2p: number[][];
-  };
+  cdn: Array<{ date: Date; gbps: number; }>;
+  p2p: Array<{ date: Date; gbps: number; }>;
 }
 
 interface CapacityGraphState {
@@ -44,13 +42,11 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
   };
 
   render() {
-    const { cdn, p2p } = this.props.bandwidthData;
+    const { cdn, p2p } = this.props;
     const { selectedDomain } = this.state;
 
     const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 
-    const cdnData = formatData(cdn);
-    const p2pData = formatData(p2p);
     return (
       <>
         <VictoryChart
@@ -77,33 +73,33 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
             tickFormat={formatBytes}
           />
           <VictoryArea
-            data={p2pData}
+            data={p2p}
             x={AXIS.x}
             y={AXIS.y}
             style={{ data: { fill: "#4FBCF2" } }}
           />
           <VictoryLine
-            data={p2pData}
+            data={p2p}
             x={AXIS.x}
             y={AXIS.y}
             style={{ data: { stroke: "#3AA0D3", strokeWidth: 3 } }}
           />
           <VictoryArea
-            data={cdnData}
+            data={cdn}
             x={AXIS.x}
             y={AXIS.y}
             style={{ data: { fill: "#B2125C" } }}
           />
           <VictoryLine
-            data={cdnData}
+            data={cdn}
             x={AXIS.x}
             y={AXIS.y}
             style={{ data: { stroke: "#511883", strokeWidth: 3 } }}
           />
         </VictoryChart>
         <CapacityZoomChart
-          cdnData={cdnData}
-          p2pData={p2pData}
+          cdn={cdn}
+          p2p={p2p}
           x={AXIS.x}
           y={AXIS.y}
           selectedDomain={selectedDomain}

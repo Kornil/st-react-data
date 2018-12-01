@@ -4,20 +4,27 @@ import { render, unmountComponentAtNode } from "react-dom";
 
 import CapacityGraph from "./CapacityGraph";
 
+const now = new Date();
+
 const bandwidthData: {
-  cdn: number[][];
-  p2p: number[][];
-} = { cdn: [[12314, 1234]], p2p: [[123, 4124]] };
+  cdn: Array<{ date: Date; gbps: number }>;
+  p2p: Array<{ date: Date; gbps: number }>;
+} = { cdn: [{ date: now, gbps: 1234 }], p2p: [{ date: now, gbps: 4124 }] };
 
 describe("<CapacityGraph />", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    render(<CapacityGraph bandwidthData={bandwidthData} />, div);
+    render(
+      <CapacityGraph cdn={bandwidthData.cdn} p2p={bandwidthData.p2p} />,
+      div
+    );
     unmountComponentAtNode(div);
   });
 
   it("handleZoom zooms", async () => {
-    const wrapper = shallow(<CapacityGraph bandwidthData={bandwidthData} />);
+    const wrapper = shallow(
+      <CapacityGraph cdn={bandwidthData.cdn} p2p={bandwidthData.p2p} />
+    );
 
     const instance = wrapper.instance() as CapacityGraph;
 
@@ -27,7 +34,9 @@ describe("<CapacityGraph />", () => {
   });
 
   it("handleBrush brushes", async () => {
-    const wrapper = shallow(<CapacityGraph bandwidthData={bandwidthData} />);
+    const wrapper = shallow(
+      <CapacityGraph cdn={bandwidthData.cdn} p2p={bandwidthData.p2p} />
+    );
 
     const instance = wrapper.instance() as CapacityGraph;
 

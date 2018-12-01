@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { ErrorPage, LoadingPage } from "../";
 import { CapacityGraph } from "./components";
+import { formatData } from "./utils";
 
 interface HomeState {
   status: "loading" | "error" | "success";
@@ -44,14 +45,21 @@ class Home extends Component<{}, HomeState> {
 
   render() {
     const { bandwidthData, status } = this.state;
-      switch(status) {
-        case "loading":
-          return <LoadingPage />
-        case "error":
-          return <ErrorPage />
-        case "success":
-          return bandwidthData && <CapacityGraph bandwidthData={bandwidthData} />
-      }
+    switch (status) {
+      case "loading":
+        return <LoadingPage />;
+      case "error":
+        return <ErrorPage />;
+      case "success":
+        return (
+          bandwidthData && (
+            <CapacityGraph
+              cdn={formatData(bandwidthData.cdn)}
+              p2p={formatData(bandwidthData.p2p)}
+            />
+          )
+        );
+    }
   }
 }
 

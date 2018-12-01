@@ -13,8 +13,8 @@ type DataType = Array<{
 }>;
 
 interface CapacityZoomChartProps {
-  cdnData: DataType;
-  p2pData: DataType;
+  cdn: DataType;
+  p2p: DataType;
   x: string;
   y: string;
   selectedDomain: DomainPropType | undefined;
@@ -23,8 +23,8 @@ interface CapacityZoomChartProps {
 }
 
 const CapacityZoomChart = ({
-  cdnData,
-  p2pData,
+  cdn,
+  p2p,
   x,
   y,
   selectedDomain,
@@ -46,13 +46,13 @@ const CapacityZoomChart = ({
   >
     <VictoryAxis tickFormat={tickFormat} />
     <VictoryArea
-      data={p2pData}
+      data={p2p}
       x={x}
       y={y}
       style={{ data: { fill: "#4FBCF2" } }}
     />
     <VictoryArea
-      data={cdnData}
+      data={cdn}
       x={x}
       y={y}
       style={{ data: { fill: "#B2125C" } }}
