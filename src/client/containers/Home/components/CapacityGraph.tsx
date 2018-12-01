@@ -11,12 +11,14 @@ import {
 } from "victory";
 
 import { formatBytes, formatTime } from "../utils";
-import { CapacityZoomChart } from "./";
+import { CapacityTooltip, CapacityZoomChart } from "./";
 
 const AXIS: { x: string; y: string } = {
   x: "date",
   y: "gbps"
 };
+
+const noop = () => null;
 
 interface CapacityGraphProps {
   cdn: Array<{ date: Date; gbps: number }>;
@@ -40,10 +42,6 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
     this.setState({ selectedDomain: domain });
   };
 
-  handleLabelToolTipText = (data: any) => {
-    return data.gbps;
-  }
-
   render() {
     const { cdn, p2p } = this.props;
     const { selectedDomain } = this.state;
@@ -61,9 +59,13 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
               zoomDimension="x"
               zoomDomain={selectedDomain}
               onZoomDomainChange={this.handleZoom}
-              labels={this.handleLabelToolTipText}
-              labelComponent={<VictoryTooltip />}
-              voronoiDimension="x"
+              labels={noop}
+              labelComponent={
+                <VictoryTooltip
+                  // @ts-ignore
+                  flyoutComponent={<CapacityTooltip cdn={cdn} p2p={p2p} />}
+                />
+              }
             />
           }
         >
