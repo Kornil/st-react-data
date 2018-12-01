@@ -41,3 +41,21 @@ type formatBytesType = (bytes: number) => string;
 
 export const formatBytes: formatBytesType = bytes =>
   `${(bytes / 1073741824).toFixed(1)}\nGbps`;
+
+type findRightDataType = (
+  date: Date,
+  cdn: DataInterface[],
+  p2p: DataInterface[]
+) => {
+  cdn: DataInterface | undefined;
+  p2p: DataInterface | undefined;
+};
+
+export const findRightData: findRightDataType = (date, cdn, p2p) => {
+  const cdnValue = cdn.find((value: DataInterface) => value.date.getTime() === date.getTime());
+  const p2pValue = p2p.find((value: DataInterface) => value.date.getTime() === date.getTime());
+  return {
+    cdn: cdnValue,
+    p2p: p2pValue
+  }
+};

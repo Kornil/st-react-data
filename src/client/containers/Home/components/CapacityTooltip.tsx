@@ -1,6 +1,6 @@
 import React from "react";
 
-import { findRightData, formatBytes, getPercentage } from "../utils";
+import { findRightData } from "../utils";
 
 interface CapacityTooltipProps {
   x: number;
