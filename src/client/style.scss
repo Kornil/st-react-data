@@ -1,5 +1,6 @@
 @import "style/graph-tooltip";
 @import "style/typography.scss";
+@import "style/capacity-zoom-graph.scss";
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -17,12 +18,7 @@ body {
 }
 
 .container {
-  margin: 0 auto 50px auto;
+  position: relative;
+  margin: 0 auto 150px auto;
   max-width: 1200px;
-
-
-  &__image {
-    width: 100px;
-    height: auto;
-  }
 }
