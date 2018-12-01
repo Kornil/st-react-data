@@ -13,19 +13,19 @@ const Months: string[] = [
   "Dec"
 ];
 
+interface DataInterface {
+  date: Date;
+  gbps: number;
+}
+
 type formatTimeType = (date: number) => string;
 
 export const formatTime: formatTimeType = date =>
   `${new Date(date).getDate()}. ${Months[new Date(date).getMonth()]}`;
 
-type formatDataType = (
-  data: number[][]
-) => Array<{
-  date: Date;
-  gbps: number;
-}>;
+type formatDataType = (data: number[][]) => DataInterface[];
 
-export const formatData: formatDataType = (data: number[][]) => {
+export const formatData: formatDataType = data => {
   const result = [];
   for (let i = 0; i < data.length; i += 1) {
     const newData = {
