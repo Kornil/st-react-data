@@ -1,6 +1,6 @@
 import React from "react";
 
-import { findRightData } from "../utils";
+import { findRightData, formatBytes, getPercentage } from "../utils";
 
 interface CapacityTooltipProps {
   x: number;
@@ -18,7 +18,41 @@ const CapacityTooltip = ({ datum, cdn, p2p }: CapacityTooltipProps) => {
       <g style={{ pointerEvents: "none" }}>
         <foreignObject x={600} y={0} width="250" height="100">
           <div className="graph-tooltip">
-          hello
+            <p>
+              <strong>
+                {data.p2p.date.toLocaleDateString("en-US", {
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  month: "long",
+                  weekday: "long",
+                  year: "numeric"
+                })}
+              </strong>
+            </p>
+            <p>
+              P2P:{" "}
+              <span className="text--light-blue">
+                {formatBytes(data.p2p.gbps)}
+              </span>
+            </p>
+            <p>
+              CDN:{" "}
+              <span className="text--berry">{formatBytes(data.cdn.gbps)}</span>
+            </p>
+            <hr />
+            <p>
+              Total:{" "}
+              <span className="text--green">
+                {formatBytes(data.p2p.gbps + data.cdn.gbps)}
+              </span>
+            </p>
+            <p>
+              Spike reduction:{" "}
+              <span className="text--light-blue">
+                {getPercentage(data.p2p.gbps, data.cdn.gbps)}%
+              </span>
+            </p>
           </div>
         </foreignObject>
       </g>

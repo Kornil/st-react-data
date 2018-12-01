@@ -1,3 +1,15 @@
+@import "style/graph-tooltip";
+@import "style/typography.scss";
+
+body {
+  color: #324147;
+
+  p {
+    font-size: 11px;
+    margin: 0 0 8px 0;
+  }
+}
+
 .container {
   margin: auto;
   text-align: center;

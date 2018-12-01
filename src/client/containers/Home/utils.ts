@@ -59,3 +59,11 @@ export const findRightData: findRightDataType = (date, cdn, p2p) => {
     p2p: p2pValue
   }
 };
+
+type getPercentageType = (value1: number, value2: number) => string;
+
+export const getPercentage: getPercentageType = (value1, value2) => {
+  const decreaseValue = value1 - value2;
+  const result = (decreaseValue / value1) * 100
+  return isNaN(result) ? "0.00" : result.toFixed(2);
+}
