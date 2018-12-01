@@ -79,25 +79,13 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
             data={p2p}
             x={AXIS.x}
             y={AXIS.y}
-            style={{ data: { fill: "#4FBCF2" } }}
-          />
-          <VictoryLine
-            data={p2p}
-            x={AXIS.x}
-            y={AXIS.y}
-            style={{ data: { stroke: "#3AA0D3", strokeWidth: 3 } }}
+            style={{ data: { fill: "#4FBCF2", stroke: "#3AA0D3", strokeWidth: 3 } }}
           />
           <VictoryArea
             data={cdn}
             x={AXIS.x}
             y={AXIS.y}
-            style={{ data: { fill: "#B2125C" } }}
-          />
-          <VictoryLine
-            data={cdn}
-            x={AXIS.x}
-            y={AXIS.y}
-            style={{ data: { stroke: "#511883", strokeWidth: 3 } }}
+            style={{ data: { fill: "#B2125C", stroke: "#511883", strokeWidth: 3 } }}
           />
         </VictoryChart>
         <CapacityZoomChart
