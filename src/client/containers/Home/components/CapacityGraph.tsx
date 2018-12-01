@@ -7,7 +7,6 @@ import {
   VictoryArea,
   VictoryAxis,
   VictoryChart,
-  VictoryLine,
   VictoryTooltip
 } from "victory";
 
@@ -20,8 +19,8 @@ const AXIS: { x: string; y: string } = {
 };
 
 interface CapacityGraphProps {
-  cdn: Array<{ date: Date; gbps: number; }>;
-  p2p: Array<{ date: Date; gbps: number; }>;
+  cdn: Array<{ date: Date; gbps: number }>;
+  p2p: Array<{ date: Date; gbps: number }>;
 }
 
 interface CapacityGraphState {
@@ -68,24 +67,23 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
             />
           }
         >
-          <VictoryAxis
-            tickFormat={formatTime}
-          />
-          <VictoryAxis
-            dependentAxis
-            tickFormat={formatBytes}
-          />
+          <VictoryAxis tickFormat={formatTime} />
+          <VictoryAxis dependentAxis tickFormat={formatBytes} />
           <VictoryArea
             data={p2p}
             x={AXIS.x}
             y={AXIS.y}
-            style={{ data: { fill: "#4FBCF2", stroke: "#3AA0D3", strokeWidth: 3 } }}
+            style={{
+              data: { fill: "#4FBCF2", stroke: "#3AA0D3", strokeWidth: 3 }
+            }}
           />
           <VictoryArea
             data={cdn}
             x={AXIS.x}
             y={AXIS.y}
-            style={{ data: { fill: "#B2125C", stroke: "#511883", strokeWidth: 3 } }}
+            style={{
+              data: { fill: "#B2125C", stroke: "#511883", strokeWidth: 3 }
+            }}
           />
         </VictoryChart>
         <CapacityZoomChart
