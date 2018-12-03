@@ -46,6 +46,8 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
     const { cdn, p2p } = this.props;
     const { selectedDomain } = this.state;
 
+    const formatAxisBytes = (bytes: number) => formatBytes(bytes) + "\nGbps"
+
     const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 
     return (
@@ -71,7 +73,7 @@ class CapacityGraph extends Component<CapacityGraphProps, CapacityGraphState> {
           }
         >
           <VictoryAxis tickFormat={formatTime} />
-          <VictoryAxis dependentAxis tickFormat={formatBytes} />
+          <VictoryAxis dependentAxis tickFormat={formatAxisBytes} />
           <VictoryArea
             data={p2p}
             x={AXIS.x}

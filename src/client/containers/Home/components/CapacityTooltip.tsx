@@ -34,18 +34,20 @@ const CapacityTooltip = ({ datum, cdn, p2p }: CapacityTooltipProps) => {
             <p>
               P2P:{" "}
               <span className="text--light-blue">
-                {formatBytes(data.p2p.gbps)}
+                {formatBytes(data.p2p.gbps)}Gbps
               </span>
             </p>
             <p>
               CDN:{" "}
-              <span className="text--berry">{formatBytes(data.cdn.gbps)}</span>
+              <span className="text--berry">
+                {formatBytes(data.cdn.gbps)}Gbps
+              </span>
             </p>
             <hr />
             <p>
               Total:{" "}
               <span className="text--green">
-                {formatBytes(data.p2p.gbps + data.cdn.gbps)}
+                {formatBytes(data.p2p.gbps + data.cdn.gbps)}Gbps
               </span>
             </p>
             <p>

@@ -72,7 +72,7 @@ export const formatAudienceData: formatAudienceDataType = data => {
 type formatBytesType = (bytes: number) => string;
 
 export const formatBytes: formatBytesType = bytes =>
-  `${(bytes / 1073741824).toFixed(1)}\nGbps`;
+  `${(bytes / 1073741824).toFixed(1)}`;
 
 /**
  * Given a Date Object, finds the p2p and cdn gbps values
