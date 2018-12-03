@@ -79,7 +79,7 @@ export const formatBytes: formatBytesType = bytes =>
  * (should always be specular)
  */
 type findRightDataType = (
-  date: Date,
+  date: Date | undefined,
   cdn: BandwidthDataInterface[],
   p2p: BandwidthDataInterface[]
 ) => {

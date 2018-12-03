@@ -1,6 +1,11 @@
-import { getPercentage } from "./utils";
+import { findRightData, getPercentage } from "./utils";
 
-it("returns right %", () => {
+it("findRightData returns null if first value is undefined", () => {
+  const date = new Date();
+  expect(findRightData(undefined, [{date, gbps: 123}], [{date, gbps: 123}])).toBeNull()
+})
+
+it("getPercentage returns right %", () => {
   const a = 100;
   const b = 50;
 
