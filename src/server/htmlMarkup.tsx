@@ -16,6 +16,8 @@ const htmlMarkup: HtmlMarkup = markup => `
   <meta name="application-name" content="simple-react-ts-app">
   <meta name="Description" content="simple-react-ts-app">
 
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
   <script src="/bundle.js" defer></script>
 
   <style>

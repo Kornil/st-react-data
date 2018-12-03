@@ -1,16 +1,12 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 
-import App from "./../../App";
+import AudienceGraph from "./AudienceGraph";
+
+const date = new Date();
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-    div
-  );
+  render(<AudienceGraph data={[{ date, audience: 123 }]} />, div);
   unmountComponentAtNode(div);
 });

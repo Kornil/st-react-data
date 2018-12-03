@@ -1,14 +1,14 @@
-.container {
-  margin: auto;
-  text-align: center;
-  max-width: 600px;
+@import "style/graph-tooltip";
+@import "style/typography.scss";
+@import "style/capacity-zoom-graph.scss";
 
-  &__image {
-    width: 100px;
-    height: auto;
-  }
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #324147;
 }
 
-.left {
-  text-align: left;
+.container {
+  position: relative;
+  margin: 0 auto 10% auto;
+  max-width: 1200px;
 }

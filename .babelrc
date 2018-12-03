@@ -1,10 +1,31 @@
 {
-  "presets": ["@babel/react", "@babel/typescript", ["@babel/env", { "modules": false }]],
-  "plugins": ["react-hot-loader/babel", "@babel/plugin-proposal-object-rest-spread", "@babel/plugin-proposal-class-properties"],
+  "presets": [
+    "@babel/react",
+    "@babel/typescript",
+    [
+      "@babel/env",
+      {
+        "modules": false,
+        "useBuiltIns": "usage"
+      }
+    ]
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties"
+  ],
   "env": {
     "test": {
-      "presets": ["@babel/react", "@babel/typescript", ["@babel/env", { "modules": "commonjs" }]],
-      "plugins": ["@babel/plugin-transform-modules-commonjs"]
+      "presets": [
+        "@babel/react",
+        "@babel/typescript",
+        ["@babel/env", { "modules": "commonjs" }]
+      ],
+      "plugins": [
+        "@babel/plugin-transform-async-to-generator",
+        "@babel/plugin-transform-modules-commonjs"
+      ]
     }
   }
 }
