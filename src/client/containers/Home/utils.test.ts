@@ -27,3 +27,10 @@ it("getPercentage returns right %", () => {
 
   expect(getPercentage(a, b)).toBe("50.00");
 });
+
+it("getPercentage returns 0.00 for wrong params", () => {
+  const a = 0;
+  const b = NaN;
+
+  expect(getPercentage(a, b)).toBe("0.00");
+});
