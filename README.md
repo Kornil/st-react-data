@@ -1,6 +1,9 @@
 # simple-ts-react-app
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/Kornil/simple-ts-react-app.svg)](https://greenkeeper.io/)
+[![codecov](https://codecov.io/gh/Kornil/st-react-data/branch/master/graph/badge.svg)](https://codecov.io/gh/Kornil/st-react-data)
+[![Build Status](https://travis-ci.org/Kornil/st-react-data.svg?branch=master)](https://travis-ci.org/Kornil/st-react-data)
+
 
 React starter project written in typescript, includes redux, webpack, babel, sass, jest & enzyme.
 
