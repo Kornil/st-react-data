@@ -85,9 +85,10 @@ type findRightDataType = (
 ) => {
   cdn: BandwidthDataInterface | undefined;
   p2p: BandwidthDataInterface | undefined;
-};
+} | null;
 
 export const findRightData: findRightDataType = (date, cdn, p2p) => {
+  if (date) {
   const cdnValue = cdn.find(
     (value: BandwidthDataInterface) => value.date.getTime() === date.getTime()
   );
@@ -98,6 +99,8 @@ export const findRightData: findRightDataType = (date, cdn, p2p) => {
     cdn: cdnValue,
     p2p: p2pValue
   };
+  }
+  return null;
 };
 
 /**

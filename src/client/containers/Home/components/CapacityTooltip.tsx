@@ -13,6 +13,7 @@ interface CapacityTooltipProps {
 const CapacityTooltip = ({ datum, cdn, p2p }: CapacityTooltipProps) => {
   const data = findRightData(datum.date, cdn, p2p);
   return (
+    data &&
     data.cdn &&
     data.p2p && (
       <g style={{ pointerEvents: "none" }}>
