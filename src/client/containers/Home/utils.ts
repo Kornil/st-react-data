@@ -89,16 +89,16 @@ type findRightDataType = (
 
 export const findRightData: findRightDataType = (date, cdn, p2p) => {
   if (date) {
-  const cdnValue = cdn.find(
-    (value: BandwidthDataInterface) => value.date.getTime() === date.getTime()
-  );
-  const p2pValue = p2p.find(
-    (value: BandwidthDataInterface) => value.date.getTime() === date.getTime()
-  );
-  return {
-    cdn: cdnValue,
-    p2p: p2pValue
-  };
+    const cdnValue = cdn.find(
+      (value: BandwidthDataInterface) => value.date.getTime() === date.getTime()
+    );
+    const p2pValue = p2p.find(
+      (value: BandwidthDataInterface) => value.date.getTime() === date.getTime()
+    );
+    return {
+      cdn: cdnValue,
+      p2p: p2pValue
+    };
   }
   return null;
 };
@@ -114,3 +114,11 @@ export const getPercentage: getPercentageType = (value1, value2) => {
   const result = (decreaseValue / value1) * 100;
   return isNaN(result) ? "0.00" : result.toFixed(2);
 };
+
+/**
+ * Find max gbps value in array created with formatBandwidthData()
+ */
+type findMaxValueType = (data: BandwidthDataInterface[]) => number;
+
+export const findMaxValue: findMaxValueType = data =>
+  Math.max(...data.map(value => value.gbps));
