@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "now": {
+    "alias": "react-data",
+    "version": 1
+  },
   "scripts": {
     "start": "node server.js",
     "start--dev": "cross-env NODE_ENV=development webpack -w & node server.js",
