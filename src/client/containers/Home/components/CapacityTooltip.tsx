@@ -11,7 +11,10 @@ interface CapacityTooltipProps {
 }
 
 const CapacityTooltip = ({ datum, cdn, p2p }: CapacityTooltipProps) => {
+  /* this is tested in utils.test.ts */
+  /* istanbul ignore next */
   const data = findRightData(datum.date, cdn, p2p);
+  /* istanbul ignore next */
   return (
     data &&
     data.cdn &&
