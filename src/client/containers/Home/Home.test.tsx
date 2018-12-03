@@ -1,11 +1,10 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import fetchMock from "fetch-mock";
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 
 import { ErrorPage } from "../";
 import Home from "./";
-import { CapacityGraph } from "./components";
 
 // @ts-ignore
 fetchMock.config = Object.assign(fetchMock.config, { overwriteRoutes: true });
@@ -37,12 +36,17 @@ describe("<Home />", () => {
       `/bandwidth`,
       JSON.stringify({ cdn: [[12314, 1234]], p2p: [[123, 4124]] })
     );
-    const wrapper = shallow(<Home />);
+    fetchMock.get(
+      `/audience`,
+      JSON.stringify({ audience: [[123, 123]] })
+    );
+    const wrapper = mount(<Home />);
 
     const instance = wrapper.instance() as Home;
 
     await instance.fetchBandwidthData();
 
-    expect(wrapper.find(CapacityGraph)).toHaveLength(1);
+    expect(wrapper.state("bandwidthData")).not.toBe(null);
+    expect(wrapper.state("audienceData")).not.toBe(null);
   });
 });
